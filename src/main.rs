@@ -15,10 +15,20 @@ async fn main() {
     output_path.push("intercepted.seb");
 
     let data = &args[1];
-    let stripped = data.strip_prefix("sebs://");
+    let mut stripped_text = "";
+    let mut has_prefix = false;
 
-    if let Some(stripped) = stripped {
-        let url = "https://".to_string() + stripped;
+    if let Some(stripped) = data.strip_prefix("sebs://") {
+        has_prefix = true;
+        stripped_text = stripped;
+    }
+    if let Some(stripped) = data.strip_prefix("seb://") {
+        has_prefix = true;
+        stripped_text = stripped;
+    }
+
+    if has_prefix {
+        let url = "https://".to_string() + stripped_text;
         println!("hello! sending get request to {url} :>");
         let request = reqwest::get(url).await.unwrap();
         let body = request.text().await.unwrap();
@@ -26,7 +36,7 @@ async fn main() {
         write(&output_path, body.as_bytes()).unwrap();
         println!("wrote to {}", output_path.to_str().unwrap());
     } else {
-        println!("expected sebs:// and a url. not... whatever that is");
+        println!("expected sebs:// or seb://, not... whatever that is");
         return;
     }
 }
