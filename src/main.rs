@@ -1,12 +1,9 @@
-use home;
-use reqwest;
 use std::env;
 use std::env::current_exe;
 use std::fs::write;
 use std::io;
 use std::io::Error;
 use std::io::Write;
-use tokio;
 use winreg::enums::*;
 use winreg::RegKey;
 

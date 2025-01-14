@@ -1,4 +1,6 @@
+use std::mem;
 use std::ptr::null_mut;
+use winapi::ctypes::c_void;
 use winapi::um::handleapi::CloseHandle;
 use winapi::um::processthreadsapi::GetCurrentProcess;
 use winapi::um::processthreadsapi::OpenProcessToken;
@@ -6,10 +8,6 @@ use winapi::um::securitybaseapi::GetTokenInformation;
 use winapi::um::winnt::TokenElevation;
 use winapi::um::winnt::HANDLE;
 use winapi::um::winnt::TOKEN_ELEVATION;
-
-use libc;
-use std::mem;
-use winapi::ctypes::c_void;
 use winapi::um::winnt::TOKEN_QUERY;
 
 pub fn is_elevated() -> bool {
