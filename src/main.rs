@@ -120,9 +120,9 @@ async fn main() {
         let url = "https://".to_string() + stripped_text;
         println!("hello! sending get request to {url} :>");
         let request = reqwest::get(url).await.unwrap();
-        let body = request.text().await.unwrap();
+        let body = request.bytes().await.unwrap();
         println!("got response yippie");
-        write(&output_path, body.as_bytes()).unwrap();
+        write(&output_path, body).unwrap();
         println!("wrote to {}", output_path.to_str().unwrap());
     } else {
         println!("expected sebs:// or seb://, not... whatever that is");
