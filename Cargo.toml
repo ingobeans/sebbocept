@@ -1,6 +1,6 @@
 [package]
 name = "sebbocept"
-version = "0.1.0"
+version = "0.4.1"
 edition = "2021"
 
 [dependencies]
@@ -8,5 +8,10 @@ home = "0.5.9"
 libc = "0.2.167"
 reqwest = "0.12.9"
 tokio = { version = "1.41.1", features = ["macros", "rt-multi-thread"] }
-winapi = { version = "0.3.9", features = ["winuser", "handleapi", "processthreadsapi", "securitybaseapi"] }
+winapi = { version = "0.3.9", features = [
+    "winuser",
+    "handleapi",
+    "processthreadsapi",
+    "securitybaseapi",
+] }
 winreg = "0.52.0"
